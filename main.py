@@ -1,29 +1,55 @@
 import os
-# Importing functions from other modules
 from preprocessing import preprocess
-from indexing import create_inverted_index, compute_tf_idf
-# from retrieval import rank_documents  # Assuming you have this function implemented
+from indexing import create_inverted_index, compute_idf, compute_tf_idf, compute_document_lengths
+from retrieval import retrieve_documents, rank_documents
+
+def load_queries(file_path):
+    """Load queries from a specified file."""
+    queries = []
+    with open(file_path, 'r', encoding='utf-8') as file:
+        for line in file:
+            # Assuming each line in the file is a separate query
+            queries.append(preprocess(line.strip()))
+    return queries
 
 def load_documents(directory):
     """Load and preprocess documents from a specified directory."""
     docs = {}
     for filename in os.listdir(directory):
-        if filename.endswith('.txt'):  # Adjust based on your file types
-            filepath = os.path.join(directory, filename)
-            with open(filepath, 'r', encoding='utf-8') as file:
-                text = file.read()
-                docs[filename] = preprocess(text)  # Preprocess each document
+        filepath = os.path.join(directory, filename)
+        with open(filepath, 'r', encoding='utf-8') as file:
+            text = file.read()
+            docs[filename] = preprocess(text)  # Preprocess each document
     return docs
 
-# Adjust the directory path to where your documents are stored
-docs_directory = 'path/to/your/documents'
+# Path to the directory where your documents are stored
+docs_directory = 'AP_collection/coll/'
 docs = load_documents(docs_directory)
 
-# Proceed with indexing and retrieval as previously outlined
+# Create the inverted index from preprocessed documents
 inverted_index = create_inverted_index(docs)
-doc_count = len(docs)
-tf_idf_index = compute_tf_idf(inverted_index, doc_count)
 
-# Implement query processing and ranking
-# query = "example search query"
-# ranked_docs = rank_documents(query, tf_idf_index)
+# Compute the total number of documents
+doc_count = len(docs)
+
+# Compute IDF scores
+idf = compute_idf(inverted_index, doc_count)
+
+# Compute TF-IDF scores for documents in the inverted index
+tf_idf_index = compute_tf_idf(inverted_index, idf)
+
+# Compute document lengths needed for cosine similarity calculation
+doc_lengths = compute_document_lengths(tf_idf_index)
+
+# Load and preprocess queries
+queries_file_path = 'topics1-50.txt'
+queries = load_queries(queries_file_path)
+
+# Process each query and rank documents
+for query in queries:
+    doc_scores = retrieve_documents(query, inverted_index, idf, doc_lengths, doc_count)
+    ranked_docs = rank_documents(doc_scores)
+    # You can now use ranked_docs as needed, e.g., for evaluation or displaying results.
+    # For instance, you could print the top 5 ranked document IDs for each query:
+    print("Query:", query)
+    print("Top 5 ranked documents:", ranked_docs[:5])
