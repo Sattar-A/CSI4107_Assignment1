@@ -1,53 +1,57 @@
 # CSI4107_Assignment1
 
-Sattar Abdul
-Osa Ikhinmwin
-Stephen Rioux
+# Information Retrieval System README
 
----
+## Team Members
+- Member 1: Sattar Abdul, Student Number: [300156257]
+- Member 2: Stephen Rioux, Student Number: [30000000]
+- Member 3: Osa Ikhinmwin, Student Number: [300211931]
 
-Assignment Summary:
+### Task Division (33% each member)
+The works was divided equally between the members
+- Member 1: Responsible for the 3 steps(preprocessing, indexing, retrieval)
+- Member 2: Responsible for outputs and optimization
+- Member 3: Responsible for setting up environments and overall project
 
-**Course:** CSI4107 - Winter 2024
+## Functionality Overview
+Our Information Retrieval (IR) system performs document indexing and query processing. It preprocesses text, creates an inverted index, computes TF-IDF scores, and retrieves and ranks documents based on cosine similarity with queries.
 
-**Assignment:** Information Retrieval System
+## Running the Program
+1. Install Python and necessary libraries (e.g., `nltk`).
+2. Place documents in the `AP_collection/coll/` directory or adjust the path 
+3. Put the stop words and topics docs in the same directory
+4. Run `main.py` with the command `python main.py`.
 
-**Due Date:** February 11, 14:00
+## Algorithms and Data Structures
 
-**Group Work:** Students are required to work in groups and submit via BrightSpace. Once one member submits, all members can see the submission.
+### Preprocessing (Step 1)
+- **Tokenization**: Splitting text into individual terms using regular expressions.
+- **Stop Word Removal**: Filtering common words using a predefined list loaded from `StopWords.txt`.
+- **Stemming**: Reducing words to their base or root form using NLTK's PorterStemmer.
 
-**Task Overview:** Implement an Information Retrieval (IR) system based on the vector space model for a collection of documents. The system should retrieve relevant documents for a set of 50 test queries. The assignment consists of three main steps:
+### Indexing (Step 2)
+- **Inverted Index**: Implemented using a defaultdict of dictionaries in Python, mapping terms to their document IDs and frequencies.
+- **Term Frequency (TF)**: Counting the number of times each term appears in each document.
+- **Document Frequency (DF)**: Calculated during inverted index creation by tracking the number of documents each term appears in.
+- **TF-IDF Computation**: Employing the TF and DF values to calculate the importance of each term in the document corpus, which is used for ranking.
+- **Document Vector Lengths**: Calculating the Euclidean norm of each document vector to normalize the cosine similarity scores during retrieval.
 
-1. **Preprocessing (10 points):** Implement functions for tokenization, stopword removal, and optionally, stemming.
-   
-2. **Indexing (10 points):** Build an inverted index to facilitate fast access to documents.
-   
-3. **Retrieval and Ranking (10 points):** Use the inverted index to find documents containing query terms, compute cosine similarity scores, and rank documents based on similarity.
+### Retrieval (Step 3)
+- **Query Vectorization**: Transforming the query into a vector form based on the IDF scores from the indexed corpus.
+- **Cosine Similarity**: Incrementally computed as query terms are processed to measure the relevance of documents to the query.
+- **Ranking**: Sorting retrieved documents by their cosine similarity scores using a heap or sorted list data structure for efficiency.
 
-**Running the System:** Run the system on the set of 50 test queries and include the output in a file named "Results" with the specified format.
+### Evaluation Measures
+- **Precision and Recall**: Standard evaluation metrics used to assess the effectiveness of the IR system, based on the relevance of the retrieved documents.
 
-**Submission Instructions:**
 
-- Write a README file including team members' names and student numbers, details of task division, functionality of programs, instructions for running them, explanations of algorithms and data structures used, and discussion of results.
+## Vocabulary and Results
+- Vocabulary Size: [Insert size]
+- Sample Tokens: [Insert 100 tokens here]
+- First 10 Results for Query 1: [Insert results here]
+- First 10 Results for Query 25: [Insert results here]
 
-- Produce a file named "Results" containing results for all test queries for the best run in the required format.
+## Performance Evaluation
+- Mean Average Precision (MAP) for 50 test queries: [Insert MAP score here]
 
-- Submit the assignment, including programs, README file, and Results file, as a zip file in BrightSpace (only one team member needs to submit).
-
-- Do not include the initial text collection.
-
-**Additional Notes:**
-
-- Stopwords list and stemming (using Porter stemmer) are provided for preprocessing.
-
-- Pseudo-relevance feedback loop and additional optimizations are encouraged.
-
-- Students can use any IR system available on the Internet but should explain their usage in the report.
-
-- Neural information retrieval methods (based on deep learning, transformers, BERT, or GPT-based models) are not allowed in this assignment.
-
-- Mean Average Precision (MAP) score computed with trec_eval for the results on the 50 test queries should be included in the report.
-
-- For queries/topics, use only the titles for one run and titles and descriptions for another run, and discuss which gives better results.
-
-Overall, the assignment aims to implement an IR system, evaluate its performance, and provide insights into improving retrieval effectiveness.
+Please replace the placeholders with your actual data and results.
