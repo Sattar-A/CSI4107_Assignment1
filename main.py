@@ -46,14 +46,7 @@ doc_lengths = compute_document_lengths(tf_idf_index)
 queries_file_path = 'topics1-50.txt'
 queries = load_queries(queries_file_path)
 
-# # Process each query and rank documents
-# for query in queries:
-#     doc_scores = retrieve_documents(query, inverted_index, idf, doc_lengths, doc_count)
-#     ranked_docs = rank_documents(doc_scores)
-#     # You can now use ranked_docs as needed, e.g., for evaluation or displaying results.
-#     # For instance, you could print the top 5 ranked document IDs for each query:
-#     print("Query:", query)
-#     print("Top 5 ranked documents:", ranked_docs[:5])
+
 # Define a unique identifier for this run
 run_name = f"IRS_{datetime.now().strftime('%Y%m%d_%H%M')}"
 

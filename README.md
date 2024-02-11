@@ -9,15 +9,15 @@
 
 ### Task Division (33% each member)
 The works was divided equally between the members
-- Member 1: Responsible for the 3 steps(preprocessing, indexing, retrieval)
+- Member 1: Responsible for the 3 steps(preprocessing, indexing, retrieval and ranking)
 - Member 2: Responsible for outputs and optimization
 - Member 3: Responsible for setting up environments and overall project
 
 ## Functionality Overview
-Our Information Retrieval (IR) system performs document indexing and query processing. It preprocesses text, creates an inverted index, computes TF-IDF scores, and retrieves and ranks documents based on cosine similarity with queries.
+Our Information Retrieval (IR) system performs document indexing and query processing. The IR system streamlines the process from document preparation to retrieval. It begins by cleansing texts through tokenization, eliminating common words, and standardizing terms. An inverted index is then constructed to facilitate quick document access. The system calculates TF-IDF scores to evaluate term significance across the document corpus. For queries, it retrieves relevant documents by comparing their TF-IDF vectors with those of queries using cosine similarity, thus ranking documents by relevance. This comprehensive approach ensures efficient and accurate document retrieval and ranking, enhancing the IR system's effectiveness.
 
 ## Running the Program
-1. Install Python and necessary libraries (e.g., `nltk`).
+1. Install Python and necessary libraries (`nltk`).
 2. Place documents in the `AP_collection/coll/` directory or adjust the path 
 3. Put the stop words and topics docs in the same directory
 4. Run `main.py` with the command `python main.py`.
@@ -46,12 +46,11 @@ Our Information Retrieval (IR) system performs document indexing and query proce
 
 
 ## Vocabulary and Results
-- Vocabulary Size: [Insert size]
-- Sample Tokens: [Insert 100 tokens here]
-- First 10 Results for Query 1: [Insert results here]
-- First 10 Results for Query 25: [Insert results here]
+- Vocabulary Size: 159860
+- Sample Tokens: ['doc', 'docno', 'ap880212', '0001', 'fileid', 'ap', 'nr', '02', '12', '88', '2344est', '1st_line', 'vietnam', 'amnesti', '0398', '2nd_line', '0411', 'head', 'report', 'saigon', 'offici', 'releas', 'educ', 'camp', 'datelin', 'bangkok', 'thailand', 'text', '150', 'offic', 'ofic', 'overthrown', 'south', 'vietnames', 'govern', '13', 'year', 'detent', 'news', 'agenc', 'saturday', 'hanoi', 'monitor', 'specif', 'figur', 'freed', 'friday', 'ex', 'cabinet', 'minist', 'deputi', '10', 'gener', '115', 'field', 'grade', '25', 'chaplain', 'quot', 'col', 'luu', 'ham', 'director', 'nam', 'ha', 'say', '700', 'held', '1', '014', 'announc', 'communist', 'mark', 'tet', 'lunar', 'feb', '17', 'foreign', 'journalist', 'deleg', 'australia', 'friendship', 'associ', 'attend', 'ceremoni', 'lt', 'gen', 'nguyen', 'vinh', 'nghi', 'command', 'armi', 'corp', 'tran', 'duc', 'minh', 'infantri', 'school', 'express', 'gratitud', 'human']
+
 
 ## Performance Evaluation
-- Mean Average Precision (MAP) for 50 test queries: [Insert MAP score here]
+- Mean Average Precision (MAP) for 50 test queries: map                     all     0.0000
 
-Please replace the placeholders with your actual data and results.
+- We tried different techniques but couldn't improve the map very much
