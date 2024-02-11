@@ -3,7 +3,7 @@
 # Information Retrieval System README
 
 ## Team Members
-- Member 1: Sattar Abdul, Student Number: [300156257]
+- Member 1: Sattar Abdul, Student Number:  [300156257]
 - Member 2: Stephen Rioux, Student Number: [300175532]
 - Member 3: Osa Ikhinmwin, Student Number: [300211931]
 
